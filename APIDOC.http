@@ -1,0 +1,98 @@
+#========= user endpoints ======
+
+# api call for creating user
+###
+POST http://127.0.0.1:8000/healthdesk/user-register/
+Content-Type: application/json
+
+{
+    "username":"user02",
+    "first_name":"naveen",
+    "last_name":"k",
+    "email":"naveenk11@gmail.com",
+    "password":"user02@123"
+}
+
+# api call for  token generation
+###
+POST http://127.0.0.1:8000/healthdesk/token/
+Content-Type: application/json
+
+{
+    "username":"user01",
+    "password":"user01@123"
+}
+
+#============ complaints api calls =========
+
+# api call for listing complaints of user
+###
+GET http://127.0.0.1:8000/healthdesk/complaints/ 
+Accept: application/json 
+Authorization: Token YOUR_TOKEN_HERE
+
+# api call for posting complaints of user
+###
+POST http://127.0.0.1:8000/healthdesk/complaints/
+Content-Type: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+{
+    "title": "Monitoring equipment not working",
+    "description": "A patient monitoring device appears to be malfunctioning and requires inspection.",
+    "complaint_type": "Equipment",
+    "department": "Intensive Care Unit",
+    "priority": "Critical",
+    "status":"Resolved"
+}
+
+# api call for listing specific complaint of user
+###
+GET http://127.0.0.1:8000/healthdesk/complaints/1 
+Accept: application/json 
+Authorization: Token YOUR_TOKEN_HERE
+
+# api call for updating complaint
+### 
+PUT http://127.0.0.1:8000/healthdesk/complaints/1/
+Content-Type: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+{
+"title": "Long Waiting Time",
+"description": "I waited more than three hours for my appointment.",
+"complaint_type": "Waiting Time",
+"department": "Cardiology",
+"priority": "High",
+"status": "In Progress"
+}
+
+# api call for deleting complaint
+###
+DELETE http://127.0.0.1:8000/healthdesk/complaints/3/
+Accept: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+# API to display unresolved complaints.
+###
+GET http://127.0.0.1:8000/healthdesk/complaints/unresolved/
+Accept: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+# api call for listing total complaints by user
+###
+GET http://127.0.0.1:8000/healthdesk/complaints/count/
+Accept: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+# status summary api call
+###
+GET http://127.0.0.1:8000/healthdesk/complaints/status-summary/
+Accept: application/json
+Authorization: Token YOUR_TOKEN_HERE
+
+# api call for listing  complaints with high or critical priority
+###
+GET http://127.0.0.1:8000/healthdesk/complaints/high-critical/
+Accept: application/json
+Authorization: Token YOUR_TOKEN_HERE
